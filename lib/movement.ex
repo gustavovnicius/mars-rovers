@@ -1,4 +1,4 @@
-defmodule Direction do
+defmodule Movement do
   @facing_north "N"
   @facing_west "W"
   @facing_south "S"
