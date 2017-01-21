@@ -20,4 +20,20 @@ defmodule Movement do
   def rotate_to_right(@facing_east),  do: @facing_south
   def rotate_to_right(@facing_south), do: @facing_west
   def rotate_to_right(@facing_west),  do: @facing_north
+
+  def walk(%{x: x, y: y, direction: @facing_north}) do
+    %{x: x, y: y + 1, direction: @facing_north}
+  end
+
+  def walk(%{x: x, y: y, direction: @facing_west}) do
+    %{x: x - 1, y: y, direction: @facing_west}
+  end
+
+  def walk(%{x: x, y: y, direction: @facing_south}) do
+    %{x: x, y: y - 1, direction: @facing_south}
+  end
+
+  def walk(%{x: x, y: y, direction: @facing_east}) do
+    %{x: x + 1, y: y, direction: @facing_east}
+  end
 end
