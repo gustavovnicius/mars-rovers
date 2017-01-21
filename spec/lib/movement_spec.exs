@@ -47,7 +47,16 @@ defmodule MovementSpec do
 
         it "should increment y" do
           expected = %{x: x, y: y + 1, direction: direction}
-          expect(Movement.walk(%{x: x, y: y, direction: direction})) |> to(eq expected)
+          upper_boundaries = %{x: x + 1, y: y + 1}
+
+          expect(Movement.walk(%{x: x, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
+        end
+
+        it "should ignore command if result is outside boundaries" do
+          expected = %{x: x, y: y, direction: direction}
+          upper_boundaries = %{x: x + 1, y: y}
+
+          expect(Movement.walk(%{x: x, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
         end
       end
 
@@ -56,7 +65,16 @@ defmodule MovementSpec do
 
         it "should decrement x" do
           expected = %{x: x - 1, y: y, direction: direction}
-          expect(Movement.walk(%{x: x, y: y, direction: direction})) |> to(eq expected)
+          upper_boundaries = %{x: x, y: y}
+
+          expect(Movement.walk(%{x: x, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
+        end
+
+        it "should ignore command if result is outside boundaries" do
+          expected = %{x: 0, y: y, direction: direction}
+          upper_boundaries = %{x: x, y: y}
+
+          expect(Movement.walk(%{x: 0, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
         end
       end
 
@@ -65,7 +83,16 @@ defmodule MovementSpec do
 
         it "should decrement y" do
           expected = %{x: x, y: y - 1, direction: direction}
-          expect(Movement.walk(%{x: x, y: y, direction: direction})) |> to(eq expected)
+          upper_boundaries = %{x: x, y: y}
+
+          expect(Movement.walk(%{x: x, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
+        end
+
+        it "should ignore command if result is outside boundaries" do
+          expected = %{x: x, y: 0, direction: direction}
+          upper_boundaries = %{x: x, y: y}
+
+          expect(Movement.walk(%{x: x, y: 0, direction: direction}, upper_boundaries)) |> to(eq expected)
         end
       end
 
@@ -74,7 +101,16 @@ defmodule MovementSpec do
 
         it "should increment x" do
           expected = %{x: x + 1, y: y, direction: direction}
-          expect(Movement.walk(%{x: x, y: y, direction: direction})) |> to(eq expected)
+          upper_boundaries = %{x: x + 1, y: y + 1}
+
+          expect(Movement.walk(%{x: x, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
+        end
+
+        it "should ignore command if result is outside boundaries" do
+          expected = %{x: x, y: y, direction: direction}
+          upper_boundaries = %{x: x, y: y}
+
+          expect(Movement.walk(%{x: x, y: y, direction: direction}, upper_boundaries)) |> to(eq expected)
         end
       end
     end
