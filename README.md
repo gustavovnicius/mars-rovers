@@ -2,7 +2,7 @@
 
 ## Running tests
 
-First, make sure you have Elixir available, then inside the project root just run:
+First make sure you have Elixir installed then, inside the project root, just run:
 
 ```shellscript
 mix deps.get
@@ -15,7 +15,13 @@ If you want a more verbose output:
 MIX_ENV=test mix espec --format=doc
 ```
 
-## Executing the samples
+## Code style check
+
+```shellscript
+mix credo
+```
+
+## Usage
 
 First, build the executable:
 
