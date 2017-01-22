@@ -3,7 +3,7 @@ defmodule MovementSpec do
 
   context "rotating" do
     context "to the left" do
-      it "should face East" do
+      it "should face West" do
         expect Movement.rotate_to("L", "N") |> to(eq "W")
       end
 
@@ -11,7 +11,7 @@ defmodule MovementSpec do
         expect Movement.rotate_to("L", "W") |> to(eq "S")
       end
 
-      it "should face West" do
+      it "should face East" do
         expect Movement.rotate_to("L", "S") |> to(eq "E")
       end
 
