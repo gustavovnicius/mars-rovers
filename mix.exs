@@ -28,6 +28,9 @@ defmodule Rovers.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:espec, "~> 1.2.2", only: :test}]
+    [
+      {:espec, "~> 1.2.2", only: :test},
+      {:credo, "~> 0.5", only: [:dev, :test]}
+    ]
   end
 end
