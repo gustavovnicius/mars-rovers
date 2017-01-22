@@ -25,4 +25,12 @@ defmodule RoverSpec do
       end
     end
   end
+
+  context "transforming" do
+    let rover: %{x: 1, y: 2, direction: "N"}
+
+    it "should convert rover into desired output" do
+      expect(Rover.to_string(rover)) |> to(eq "1 2 N")
+    end
+  end
 end

@@ -12,7 +12,7 @@ defmodule Main do
         )
       end
     )
-    |> Enum.map(fn(%{x: x, y: y, direction: facing}) -> "#{x} #{y} #{facing}" end)
+    |> Enum.map(&Rover.to_string/1)
     |> Enum.each(fn(rover) -> IO.puts(rover) end)
   end
 end
