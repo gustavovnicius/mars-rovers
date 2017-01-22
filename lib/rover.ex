@@ -4,6 +4,6 @@ defmodule Rover do
   end
 
   def move(%{x: x, y: y, direction: facing}, _plateau, rotate_to) when rotate_to != "M" do
-    %{x: x, y: y, facing: Movement.rotate_to(rotate_to, facing)}
+    %{x: x, y: y, direction: Movement.rotate_to(rotate_to, facing)}
   end
 end
