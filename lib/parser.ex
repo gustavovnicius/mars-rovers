@@ -14,13 +14,14 @@ defmodule Parser do
   end
 
   def parse_plateau(raw_plateau) do
-    [x, y] = String.trim(raw_plateau) |> String.split(" ")
+    [x, y] = raw_plateau |> String.trim() |> String.split(" ")
 
     %{x: String.to_integer(x), y: String.to_integer(y)}
   end
 
   def read_rovers(from) do
-    IO.stream(from, :line)
+    from
+    |> IO.stream(:line)
     |> Enum.chunk(2)
     |> Enum.reduce([], fn(raw_rover, acc) -> [parse_rover(raw_rover) | acc] end)
     |> Enum.reverse
@@ -31,7 +32,7 @@ defmodule Parser do
   end
 
   def parse_rover_position(raw_position) do
-    [x, y, facing] = String.trim(raw_position) |> String.split(" ")
+    [x, y, facing] = raw_position |> String.trim() |> String.split(" ")
 
     %{x: String.to_integer(x), y: String.to_integer(y), direction: facing}
   end

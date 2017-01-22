@@ -1,6 +1,7 @@
 defmodule Main do
   def main(_args) do
-    Parser.parse_input(:stdio)
+    :stdio
+    |> Parser.parse_input()
     |> Enum.map(
       fn(%{plateau: plateau, rover: %{x: x, y: y, direction: facing, commands: commands}}) ->
         Enum.reduce(
