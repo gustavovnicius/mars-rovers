@@ -1,24 +1,30 @@
 # Rovers
 
-**TODO: Add description**
+## Running tests
 
-## Installation
+First, make sure you have Elixir available, then inside the project root just run:
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+```shellscript
+mix deps.get
+MIX_ENV=test mix espec
+```
 
-  1. Add `rovers` to your list of dependencies in `mix.exs`:
+If you want a more verbose output:
 
-    ```elixir
-    def deps do
-      [{:rovers, "~> 0.1.0"}]
-    end
-    ```
+```shellscript
+MIX_ENV=test mix espec --format=doc
+```
 
-  2. Ensure `rovers` is started before your application:
+## Executing the samples
 
-    ```elixir
-    def application do
-      [applications: [:rovers]]
-    end
-    ```
+First, build the executable:
 
+```shellscript
+mix escript.build
+```
+
+Then, just run it passing the sample as the standard input:
+
+```shellscript
+./rovers < samples/sample_1.txt
+```
