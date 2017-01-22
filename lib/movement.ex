@@ -21,7 +21,7 @@ defmodule Movement do
   def rotate_to_right(@facing_south), do: @facing_west
   def rotate_to_right(@facing_west),  do: @facing_north
 
-  def walk(%{x: x, y: y, direction: @facing_north}, %{y: top_y}) when top_y < y + 1 do
+  def walk(%{x: x, y: y, direction: @facing_north}, %{y: upper_y}) when upper_y < y + 1 do
     %{x: x, y: y, direction: @facing_north}
   end
 
@@ -45,7 +45,7 @@ defmodule Movement do
     %{x: x, y: y - 1, direction: @facing_south}
   end
 
-  def walk(%{x: x, y: y, direction: @facing_east}, %{x: top_x}) when top_x < x + 1 do
+  def walk(%{x: x, y: y, direction: @facing_east}, %{x: upper_x}) when upper_x < x + 1 do
     %{x: x, y: y, direction: @facing_east}
   end
 
