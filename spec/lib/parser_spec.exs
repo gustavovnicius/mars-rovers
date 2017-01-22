@@ -1,9 +1,10 @@
 defmodule ParserSpec do
   use ESpec
 
+  let plateau: %{x: 5, y: 4}
+
   context "parsing plateau info" do
     let raw_plateau: "5 4\n"
-    let plateau: %{x: 5, y: 4}
 
     it "should read raw_plateau from input" do
       allow(IO).to accept(:read, fn(_input, :line) -> raw_plateau end)
@@ -53,6 +54,12 @@ defmodule ParserSpec do
       expected = %{commands: ~w(L M L M L M L M M)}
 
       expect(Parser.parse_rover_commands("LMLMLMLMM\n")) |> to(eq expected)
+    end
+
+    it "should join rover and plateau data" do
+      expected = [%{rover: rover_1, plateau: plateau}, %{rover: rover_2, plateau: plateau}]
+
+      expect(Parser.denormalize_plateau_and_rovers_data(plateau, [rover_1, rover_2])) |> to(eq(expected))
     end
   end
 end

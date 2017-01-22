@@ -1,6 +1,9 @@
 defmodule Parser do
   def parse_input(from) do
-    %{plateau: read_plateau(from), rovers: read_rovers(from)}
+    plateau = read_plateau(from)
+    rovers = read_rovers(from)
+
+    denormalize_plateau_and_rovers_data(plateau, rovers)
   end
 
   def read_plateau(from) do
@@ -35,5 +38,9 @@ defmodule Parser do
 
   def parse_rover_commands(raw_commands) do
     %{commands: String.split(String.trim(raw_commands), "", trim: true)}
+  end
+
+  def denormalize_plateau_and_rovers_data(plateau, rovers) do
+    Enum.map(rovers, fn(rover) -> %{rover: rover, plateau: plateau} end)
   end
 end
