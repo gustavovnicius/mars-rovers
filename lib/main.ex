@@ -2,17 +2,7 @@ defmodule Main do
   def main(_args) do
     :stdio
     |> Parser.parse_input()
-    |> Enum.map(
-      fn(%{plateau: plateau, rover: %{x: x, y: y, direction: facing, commands: commands}}) ->
-        Enum.reduce(
-          commands,
-          %{x: x, y: y, direction: facing},
-          fn (command, position) ->
-            Rover.move(position, plateau, command)
-          end
-        )
-      end
-    )
+    |> Enum.map(&Rover.execute_commands/1)
     |> Enum.map(&Rover.to_string/1)
     |> Enum.each(fn(rover) -> IO.puts(rover) end)
   end

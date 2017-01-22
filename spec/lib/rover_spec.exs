@@ -1,6 +1,8 @@
 defmodule RoverSpec do
   use ESpec
 
+  let rover: %{x: 1, y: 2, direction: "N", commands: ~w(L M L M L M L M M)}
+
   context "walking" do
     let position: %{}, plateau: %{}
 
@@ -27,10 +29,19 @@ defmodule RoverSpec do
   end
 
   context "transforming" do
-    let rover: %{x: 1, y: 2, direction: "N"}
-
     it "should convert rover into desired output" do
       expect(Rover.to_string(rover)) |> to(eq "1 2 N")
+    end
+  end
+
+  context "executing commands" do
+    let plateau: %{x: 5, y: 5}
+    let input: %{plateau: plateau, rover: rover}
+
+    it "should execute rover commands" do
+      expected = %{x: 1, y: 3, direction: "N"}
+
+      expect(Rover.execute_commands(input)) |> to(eq expected)
     end
   end
 end
