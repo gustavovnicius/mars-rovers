@@ -6,7 +6,6 @@ defmodule Movement do
 
   @left "L"
   @right "R"
-  @forward "M"
 
   def rotate_to(@left, facing),  do: rotate_to_left(facing)
   def rotate_to(@right, facing), do: rotate_to_right(facing)
