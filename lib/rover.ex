@@ -1,4 +1,6 @@
 defmodule Rover do
+  @forward "M"
+
   def execute_commands(%{plateau: plateau, rover: %{x: x, y: y, direction: facing, commands: commands}}) do
     Enum.reduce(
       commands,
@@ -9,11 +11,11 @@ defmodule Rover do
     )
   end
 
-  def move(position, plateau, "M") do
+  def move(position, plateau, @forward) do
     Movement.walk(position, plateau)
   end
 
-  def move(%{x: x, y: y, direction: facing}, _plateau, direction) when direction != "M" do
+  def move(%{x: x, y: y, direction: facing}, _plateau, direction) when direction != @forward do
     %{x: x, y: y, direction: Movement.rotate_to(direction, facing)}
   end
 
